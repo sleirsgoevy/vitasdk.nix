@@ -1,27 +1,13 @@
 { pkgs ? import<nixpkgs>{},
   vitasdk ? import ./vitasdk-core.nix { inherit pkgs; },
   lockfile ? import ./vitasdk-package-lock.nix { inherit pkgs; },
-  overrides ? import ./vitasdk-package-overrides.nix { inherit pkgs; } }:
+  overrides ? import ./vitasdk-package-overrides.nix { inherit pkgs; },
+  vitabuild-parser ? import ./vitabuild-parser.nix { inherit pkgs; } }:
 
 with pkgs;
+with vitabuild-parser;
 
 let
-  getPkgVariable = sep: var: path: builtins.readFile "${stdenv.mkDerivation {
-    name = "get-pkg-variable-${path}-${var}";
-    phases = "installPhase";
-    installPhase = ''
-      . ${path}/VITABUILD
-      IFS='${sep}'
-      echo -n "${"$"+var}" > $out
-    '';
-  }}";
-  nonEmptySplit = sep: s: if s == "" then [] else lib.splitString sep s;
-  getName = getPkgVariable "\n" "pkgname";
-  getVersion = getPkgVariable "\n" "pkgver";
-  getPkgrel = getPkgVariable "\n" "pkgrel";
-  getDepends = path: nonEmptySplit " " (getPkgVariable " " "{depends[*]}" path);
-  getSources = path: nonEmptySplit "\n" (getPkgVariable "\n" "{source[*]}" path);
-  getShaSums = path: nonEmptySplit "\n" (getPkgVariable "\n" "{sha256sums[*]}" path);
   getSourceDerivations = lockfile: path: builtins.map ({fst, snd}: let
     url = (builtins.elemAt (lib.splitString "#" fst) 0);
     basename = builtins.baseNameOf url;
@@ -89,14 +75,7 @@ let
   };
   makeRepo = super: dir: lib.fix (self: super // {
     buildPackage = buildPackage super.lockfile super.overrides self;
-  } // (builtins.foldl' (s: q: s // { "${q}" = self.buildPackage "${dir}/${q}"; }) {} (builtins.map ({fst, snd}: fst) (builtins.filter ({fst, snd}: snd == "directory" && fst != ".github") (lib.zipLists (builtins.attrNames (builtins.readDir dir)) (builtins.attrValues (builtins.readDir dir)))))));
+  } // (builtins.foldl' (s: q: s // { "${q}" = self.buildPackage "${dir}/${q}"; }) {} (getAllPackages dir)));
 in
 
-makeRepo { inherit lockfile overrides vitasdk; } (fetchFromGitHub {
-  owner = "vitasdk";
-  repo = "packages";
-  #rev = "fd618dfd97525a00cf1a0d6e00c6ee5f8c83611a";
-  #sha256 = "0k32lixawxpdw9rxglyxid61aikc8ijf54cs15yv9l73a38nxxsa";
-  rev = "cf47f3668fb83ea5129b9a66c18266da62f1ea4c";
-  sha256 = "1kpsf5dzmcwhvqgi6fav3ps1d1lipmbqm5r1r1cpbi6r0fmdcn82";
-})
+makeRepo { inherit lockfile overrides vitasdk; } lockfile."git+https://github.com/vitasdk/packages.git"

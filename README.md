@@ -10,4 +10,4 @@ nix-shell -p '(import ./vitasdk-packages.nix {}).vitasdk' '(import ./vitasdk-pac
 
 ## Packages
 
-Derivations for all [official VitaSDK packages](https://github.com/vitasdk/packages) are generated, however not all of them actually compile or even evaluate successfully. For instance, many packages have missing checksums, which is considered a big no-no in the Nix ecosystem.
+Derivations for all [official VitaSDK packages](https://github.com/vitasdk/packages) are generated, however not all of them actually compile or even evaluate successfully. For example, one package has its source hosted on SVN, which the current lockfile generator does not support.
