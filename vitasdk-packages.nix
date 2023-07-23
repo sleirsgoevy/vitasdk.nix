@@ -55,7 +55,7 @@ let
         git add -f .
         git config user.name stub
         git config user.email stub@example.org
-        git commit --allow-empty -m 123
+        GIT_COMMITTER_DATE='Jan 1 00:00:00 1970 +0000' git commit -m 123 --date 'Jan 1 00:00:00 1970 +0000'
         git remote add origin ${q.origin}
         ${if q.hasCommitHash then ''
           git checkout -b ${q.commitHash}

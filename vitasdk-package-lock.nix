@@ -53,8 +53,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/imgui-vita.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "imgui-vita";
-    rev = "78f7d1fb18409347ac4ad00e722e8d50290ab8bc";
-    sha256 = "sha256-l7hZucVWhtDKKqvb4kUGOxXp9SJKBGWKNmMdfdhFD8E=";
+    rev = "7163b8246818f18b430f88b58ba006fd6ff89996";
+    sha256 = "sha256-kJsUBTC9VROZ5OEVlCTGWDBpA0joPjWmRZX9FGS5Bjg=";
   };
   "git+https://github.com/Rinnegatamante/kuio.git" = fetchFromGitHub {
     owner = "Rinnegatamante";

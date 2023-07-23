@@ -19,7 +19,14 @@ stdenv.mkDerivation rec {
       cp -r "$2" $1-prefix/src/$1
       chmod -R +w $1-prefix/src/$1
       touch $1-prefix/src/$1-stamp/$1-gitclone-lastrun.txt
-      if [[ "$3" == 0 ]]; then ( cd $1-prefix/src/$1; git init; git add .; git config user.name stub; git config user.email stub@example.org; git commit -m 123; ); fi
+      if [[ "$3" == 0 ]]; then (
+        cd $1-prefix/src/$1
+        git init
+        git add .
+        git config user.name stub
+        git config user.email stub@example.org
+        GIT_COMMITTER_DATE='Jan 1 00:00:00 1970 +0000' git commit -m 123 --date 'Jan 1 00:00:00 1970 +0000'
+      ); fi
     }
     ${lib.concatMapStrings (i: "copySubproject ${i.path} ${lockfile."${i.object}"} ${({ rmgit = "0"; } // i).rmgit}\n") subprojects}
     ( cd isl_build-prefix/src/isl_build; git remote add origin "file://$PWD"; git branch isl-0.21; )
