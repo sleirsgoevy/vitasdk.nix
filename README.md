@@ -8,6 +8,8 @@ Sample usage:
 nix-shell -p '(import ./vitasdk-packages.nix {}).vitasdk' '(import ./vitasdk-packages.nix {}).vitaGL'
 ```
 
+A flake is provided, but using it is not recommended.
+
 ## Packages
 
 Derivations for all [official VitaSDK packages](https://github.com/vitasdk/packages) are generated, however not all of them actually compile or even evaluate successfully. For example, one package has its source hosted on SVN, which the current lockfile generator does not support.
