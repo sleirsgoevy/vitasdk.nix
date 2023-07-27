@@ -71,13 +71,18 @@ let
     with pkgs;
 
     {
-    ${builtins.concatStringsSep "" (map urlFormat urls)}}
+    ${builtins.concatStringsSep "" (map urlFormat urls)}${manual}}
     '';
   repoUrl = "git+https://github.com/vitasdk/packages.git";
   commitOverrides = {
     "https://github.com/vitasdk/packages" = "cf47f3668fb83ea5129b9a66c18266da62f1ea4c"; # https://github.com/vitasdk/packages/pull/285
   };
-  manualLock = ''
+  manualLock = "  "+''
+    "svn://svn.code.sf.net/p/lame/svn/trunk/lame#revision=r6403" = fetchsvn {
+        url = "svn://svn.code.sf.net/p/lame/svn/trunk/lame";
+        rev = "r6403";
+        sha256 = "0dws7012ngd4z99a8wd9nwbjcnvgv4vf67i7g631clhgjhs9vybq";
+      };
   '';
 in
 

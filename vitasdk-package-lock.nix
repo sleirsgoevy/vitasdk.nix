@@ -83,8 +83,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/vitaGL.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "vitaGL";
-    rev = "dfbb3885dee05d3931a9be0b532df95cf48b9819";
-    sha256 = "sha256-VZldeeFHtei2Yay0scmo5cGQo4R33rZB3f/zt+GtEOU=";
+    rev = "caf5027637b3a7a21433ea2f9423502bb1ea4959";
+    sha256 = "sha256-GV8AYRL/NdRdkzycC1IVyEG50JDFVryRlm8i1R1p6tM=";
   };
   "git+https://github.com/SonicMastr/Pigs-In-A-Blanket.git" = fetchFromGitHub {
     owner = "SonicMastr";
@@ -173,8 +173,8 @@ with pkgs;
   "git+https://github.com/jbeder/yaml-cpp.git" = fetchFromGitHub {
     owner = "jbeder";
     repo = "yaml-cpp";
-    rev = "b8882652fcbeba4c00dec019a39da91e702e474e";
-    sha256 = "sha256-7AzA08l2LQ+ixK+xRdY0AtpzQeNDe7yp1HNZO+atjG0=";
+    rev = "35b4498026b6293bfadc75f9ee325cb16d6975af";
+    sha256 = "sha256-nOvIS5kDuiqcf8J3g5RYTAuImudmBLl526ZSlU3wl9o=";
   };
   "git+https://github.com/lecram/gifdec.git" = fetchFromGitHub {
     owner = "lecram";
@@ -251,8 +251,8 @@ with pkgs;
   "git+https://github.com/vitasdk/vita-headers.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "vita-headers";
-    rev = "6863c650546bf6347a0f9a367cd9a396f74214ff";
-    sha256 = "sha256-D9mBzT6ShhsddVh0UBpsjOTwr83JCcNACekJwk7slLU=";
+    rev = "251fb0ba8506766cf8bee4e330e88e2f934b175b";
+    sha256 = "sha256-pJLk9+jQbl7f9H6aWm/t9d2R6Z/uBlthQI1AtuF1a+w=";
   };
   "git+https://github.com/vitasdk/vita-makepkg.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -263,8 +263,8 @@ with pkgs;
   "git+https://github.com/vitasdk/vita-toolchain.git#recursive" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "vita-toolchain";
-    rev = "269902866d699f10eb6963895371226146700593";
-    sha256 = "sha256-XkbzD4LpZUkF8MJrNL5WHhJlKrk4t2oJoo+luGktbEU=";
+    rev = "bbb2c95d41cd4037df86529217387979745426b6";
+    sha256 = "sha256-sWy2lw7NiXpQlBD4CLYLXOa9FBQClwLfprJRlI+Hwhk=";
     fetchSubmodules = true;
   };
   "git+https://github.com/xerpi/libftpvita.git" = fetchFromGitHub {
@@ -361,5 +361,10 @@ with pkgs;
   "https://zlib.net/zlib-1.2.13.tar.xz" = fetchurl {
     url = "https://zlib.net/zlib-1.2.13.tar.xz";
     sha256 = "d14c38e313afc35a9a8760dadf26042f51ea0f5d154b0630a31da0540107fb98";
+  };
+  "svn://svn.code.sf.net/p/lame/svn/trunk/lame#revision=r6403" = fetchsvn {
+    url = "svn://svn.code.sf.net/p/lame/svn/trunk/lame";
+    rev = "r6403";
+    sha256 = "0dws7012ngd4z99a8wd9nwbjcnvgv4vf67i7g631clhgjhs9vybq";
   };
 }
