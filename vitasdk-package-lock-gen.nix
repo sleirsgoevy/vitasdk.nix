@@ -75,7 +75,6 @@ let
     '';
   repoUrl = "git+https://github.com/vitasdk/packages.git";
   commitOverrides = {
-    "https://github.com/vitasdk/packages" = "cf47f3668fb83ea5129b9a66c18266da62f1ea4c"; # https://github.com/vitasdk/packages/pull/285
   };
   manualLock = "  "+''
     "svn://svn.code.sf.net/p/lame/svn/trunk/lame#revision=r6403" = fetchsvn {

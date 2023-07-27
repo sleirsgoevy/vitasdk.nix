@@ -158,6 +158,12 @@ with pkgs;
     rev = "7c150b021f8b7e7d4f624bbad644fd2f96e5826b";
     sha256 = "sha256-rOPGPjDaLGw175fs95Xo9WbSvH+mJUdSXJNB2TyI2OE=";
   };
+  "git+https://github.com/fgsfdsfgs/fluidsynth-lite.git" = fetchFromGitHub {
+    owner = "fgsfdsfgs";
+    repo = "fluidsynth-lite";
+    rev = "918f2107ea72c2765c29d9ee6f78d19b36374ed8";
+    sha256 = "sha256-hj1hj1lCvOpb73jh6fm7VS5enhMlwnFJmVNqS7GDPFU=";
+  };
   "git+https://github.com/frangarcj/libvita2d_ext.git" = fetchFromGitHub {
     owner = "frangarcj";
     repo = "libvita2d_ext";
@@ -227,8 +233,8 @@ with pkgs;
   "git+https://github.com/vitasdk/packages.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "packages";
-    rev = "cf47f3668fb83ea5129b9a66c18266da62f1ea4c";
-    sha256 = "sha256-AlnWqgPZxHVZyCGXile9kYYW9B1bORMf3pCz+ltx+s4=";
+    rev = "f3ce162df42907f21e6139ac3ee3196239cbdb05";
+    sha256 = "sha256-xwBZCiWq4ZTsjQq0M0qYWteeMF/COYJLuSkts03jpfc=";
   };
   "git+https://github.com/vitasdk/pthread-embedded.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -338,9 +344,9 @@ with pkgs;
     url = "https://github.com/libexpat/libexpat/releases/download/R_2_3_0/expat-2.3.0.tar.bz2";
     sha256 = "f122a20eada303f904d5e0513326c5b821248f2d4d2afbf5c6f1339e511c0586";
   };
-  "https://github.com/libsdl-org/SDL/archive/ac13ca9ab691e13e8eebe9684740ddcb0d716203.tar.gz" = fetchurl {
-    url = "https://github.com/libsdl-org/SDL/archive/ac13ca9ab691e13e8eebe9684740ddcb0d716203.tar.gz";
-    sha256 = "44a2631146fd1c8f391d33a30703d4766415db18a7d4d1e856773f2e65cab42a";
+  "https://github.com/libsdl-org/SDL/archive/4761467b2e8cc7db3d6bc98747daca0051858f09.tar.gz" = fetchurl {
+    url = "https://github.com/libsdl-org/SDL/archive/4761467b2e8cc7db3d6bc98747daca0051858f09.tar.gz";
+    sha256 = "2a8980add57db608f81b38a64ecb4db06593ecde556355ea9dbdc9d1f70ab9f2";
   };
   "https://github.com/libsdl-org/SDL_net/archive/283e95e3460e8caca7ffacef4b94d82a80e8700f.tar.gz" = fetchurl {
     url = "https://github.com/libsdl-org/SDL_net/archive/283e95e3460e8caca7ffacef4b94d82a80e8700f.tar.gz";

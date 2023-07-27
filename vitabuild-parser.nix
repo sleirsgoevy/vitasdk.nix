@@ -4,7 +4,7 @@ with pkgs;
 
 rec {
   getPkgVariable = sep: var: path: builtins.readFile "${stdenv.mkDerivation {
-    name = "get-pkg-variable-${path}-${var}";
+    name = "get-pkg-variable-${builtins.baseNameOf path}-${var}";
     phases = "installPhase";
     installPhase = ''
       . ${path}/VITABUILD
