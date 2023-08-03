@@ -83,8 +83,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/vitaGL.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "vitaGL";
-    rev = "caf5027637b3a7a21433ea2f9423502bb1ea4959";
-    sha256 = "sha256-GV8AYRL/NdRdkzycC1IVyEG50JDFVryRlm8i1R1p6tM=";
+    rev = "9ed5e1e13c3fff300c64cbf5b33e4a2271e091d8";
+    sha256 = "sha256-hTE2NqoT2f5kfQyOsOvrDDoMCQzoaDfQjTRBwEGPJFw=";
   };
   "git+https://github.com/SonicMastr/Pigs-In-A-Blanket.git" = fetchFromGitHub {
     owner = "SonicMastr";
@@ -194,6 +194,12 @@ with pkgs;
     rev = "8ecba3647edb6dd940463fedf38ca33a8e2a73d1";
     sha256 = "sha256-96SBBZp+/4WkXLvHKSPItNi5WuzdVccI/ZcbJOFjYYk=";
   };
+  "git+https://github.com/libsdl-org/SDL_mixer.git#commit=eb005518b0085244630ccfb41977f818af45d2ea" = fetchFromGitHub {
+    owner = "libsdl-org";
+    repo = "SDL_mixer";
+    rev = "eb005518b0085244630ccfb41977f818af45d2ea";
+    sha256 = "sha256-z8tCZ4Qd5ZIzqHLVE52TjxexSpBdL3A2Ig5Cekr07tU=";
+  };
   "git+https://github.com/psxdev/debugnet.git" = fetchFromGitHub {
     owner = "psxdev";
     repo = "debugnet";
@@ -233,8 +239,8 @@ with pkgs;
   "git+https://github.com/vitasdk/packages.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "packages";
-    rev = "f3ce162df42907f21e6139ac3ee3196239cbdb05";
-    sha256 = "sha256-xwBZCiWq4ZTsjQq0M0qYWteeMF/COYJLuSkts03jpfc=";
+    rev = "8cf6539c5818ed0dd8852dd32750a8e5e1f80a83";
+    sha256 = "sha256-MN49/zm1HfiqN5WfsAlymzeujeO9CHKsWfHTnO8wXUs=";
   };
   "git+https://github.com/vitasdk/pthread-embedded.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -257,8 +263,8 @@ with pkgs;
   "git+https://github.com/vitasdk/vita-headers.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "vita-headers";
-    rev = "251fb0ba8506766cf8bee4e330e88e2f934b175b";
-    sha256 = "sha256-pJLk9+jQbl7f9H6aWm/t9d2R6Z/uBlthQI1AtuF1a+w=";
+    rev = "4bd961de51b4da3f13cb688fcb5e1e68a01276d6";
+    sha256 = "sha256-gwXPnF5HPCeQ9dxrQ5+Bw7iqKdCeDk8o3v1hmmqeTcc=";
   };
   "git+https://github.com/vitasdk/vita-makepkg.git" = fetchFromGitHub {
     owner = "vitasdk";
