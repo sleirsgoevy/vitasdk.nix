@@ -13,7 +13,7 @@
   tarballs = [
     "https://ftp.gnu.org/gnu/gmp/gmp-6.1.2.tar.bz2"
     "https://ftp.gnu.org/gnu/binutils/binutils-2.34.tar.xz"
-    "https://zlib.net/zlib-1.2.13.tar.xz"
+    "https://www.zlib.net/fossils/zlib-1.2.13.tar.gz"
     "https://github.com/vitasdk/artifacts/releases/download/libelf-0.8.13/libelf-0.8.13.tar.gz"
     "https://ftp.gnu.org/gnu/gdb/gdb-9.2.tar.xz"
     "http://pyyaml.org/download/libyaml/yaml-0.2.2.tar.gz"

@@ -8,7 +8,13 @@ Sample usage:
 nix-shell -p '(import ./vitasdk-packages.nix {}).vitasdk' '(import ./vitasdk-packages.nix {}).vitaGL'
 ```
 
-A flake is provided, but using it is not recommended.
+A flake is also provided, you can use it like this:
+
+```nix
+nix shell github:sleirsgoevy/vitasdk.nix#vitasdk
+```
+
+Note that this way you cannot add libraries to your shell without writing a flake for your own app.
 
 ## Packages
 

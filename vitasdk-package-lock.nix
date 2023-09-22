@@ -3,10 +3,10 @@
 with pkgs;
 
 {
-  "git+https://git.code.sf.net/p/libpng/code#tag=v1.6.39" = fetchgit {
+  "git+https://git.code.sf.net/p/libpng/code#tag=v1.6.40" = fetchgit {
     url = "https://git.code.sf.net/p/libpng/code";
-    rev = "07b8803110da160b158ebfef872627da6c85cbdf";
-    sha256 = "sha256-RBU+7e77CaUqEiVn/YZRgn4dt4jDZOTUVSZYvnvKlvU=";
+    rev = "f135775ad4e5d4408d2e12ffcc71bb36e6b48551";
+    sha256 = "sha256-Rad7Y5Z9PUCipBTQcB7LEP8fIVTG3JsnMeknUkZ/rRg=";
   };
   "git+https://github.com/Cpasjuste/VTinyGL.git" = fetchFromGitHub {
     owner = "Cpasjuste";
@@ -83,8 +83,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/vitaGL.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "vitaGL";
-    rev = "9ed5e1e13c3fff300c64cbf5b33e4a2271e091d8";
-    sha256 = "sha256-hTE2NqoT2f5kfQyOsOvrDDoMCQzoaDfQjTRBwEGPJFw=";
+    rev = "af1b11049b2c73bc014b07bdc52db494d8f78679";
+    sha256 = "sha256-jgenC/WewB9T8BiVSVJ6tJiOpLLRUttJRxoty5EAtdc=";
   };
   "git+https://github.com/SonicMastr/Pigs-In-A-Blanket.git" = fetchFromGitHub {
     owner = "SonicMastr";
@@ -179,8 +179,8 @@ with pkgs;
   "git+https://github.com/jbeder/yaml-cpp.git" = fetchFromGitHub {
     owner = "jbeder";
     repo = "yaml-cpp";
-    rev = "35b4498026b6293bfadc75f9ee325cb16d6975af";
-    sha256 = "sha256-nOvIS5kDuiqcf8J3g5RYTAuImudmBLl526ZSlU3wl9o=";
+    rev = "37f1b8b8c9e5172ff3a79a3d5fdbb87f2994842b";
+    sha256 = "sha256-YuSaK5Vk5BDWFAHfDD2IVaG9gN5y+poZDLuecwUgI68=";
   };
   "git+https://github.com/lecram/gifdec.git" = fetchFromGitHub {
     owner = "lecram";
@@ -221,8 +221,8 @@ with pkgs;
   "git+https://github.com/vitasdk/buildscripts" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "buildscripts";
-    rev = "5f970b5f6976eadeed2aff6355a9123c1158cc04";
-    sha256 = "sha256-vyCjXP8Nrrl50fxoDZv9+BlQrvXU2vm1aToczuBM3G8=";
+    rev = "bc2740a0a4f8e8b76168ea846ec08fb2e21ef8d4";
+    sha256 = "sha256-lEp2gmDLeXUHGUgVX2Gi3FWsvxIWML19Hv329EdG0yw=";
   };
   "git+https://github.com/vitasdk/libzip.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -233,14 +233,14 @@ with pkgs;
   "git+https://github.com/vitasdk/newlib.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "newlib";
-    rev = "65eb695a322084cc06ed86b912dce58c61d960c3";
-    sha256 = "sha256-AHta5LBlDaVlUeI1MMbjY8u0jmywvrRzWZTGzY+SvNA=";
+    rev = "a13cf8c24f2bd8c4caf3be584c34147432df7887";
+    sha256 = "sha256-ItgdV3gDPDyBtLKEwydSSXg1h65ZfwjAtAAHAjA5GA8=";
   };
   "git+https://github.com/vitasdk/packages.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "packages";
-    rev = "8cf6539c5818ed0dd8852dd32750a8e5e1f80a83";
-    sha256 = "sha256-MN49/zm1HfiqN5WfsAlymzeujeO9CHKsWfHTnO8wXUs=";
+    rev = "9b89e594b6aaa3845a194c2d78731ac2a8dc6296";
+    sha256 = "sha256-3Js4AmrpChU4SoYb26wgqMACUpcKi/kHsY52g+yVFJM=";
   };
   "git+https://github.com/vitasdk/pthread-embedded.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -251,8 +251,8 @@ with pkgs;
   "git+https://github.com/vitasdk/samples.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "samples";
-    rev = "a4bd64274263e7edbb284f09940817d1cad464bf";
-    sha256 = "sha256-oYr7TKtu9+v3aFiWTZchJzuR9Alfl7fAHYtz9AMntUs=";
+    rev = "1a575c59761a94139afe153256e3f81480538143";
+    sha256 = "sha256-VfQoj2n6ETAe1Q0WGcRKrlA1HU+zjBUQJpIcT/lB23U=";
   };
   "git+https://github.com/vitasdk/vdpm.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -263,8 +263,8 @@ with pkgs;
   "git+https://github.com/vitasdk/vita-headers.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "vita-headers";
-    rev = "4bd961de51b4da3f13cb688fcb5e1e68a01276d6";
-    sha256 = "sha256-gwXPnF5HPCeQ9dxrQ5+Bw7iqKdCeDk8o3v1hmmqeTcc=";
+    rev = "06532950349fb4290002cb8ca43cfa1585d2f76d";
+    sha256 = "sha256-w7MH04VrTlIv4s74yjNLjLVfgEWM30WLGe/kdgS5IhY=";
   };
   "git+https://github.com/vitasdk/vita-makepkg.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -275,8 +275,8 @@ with pkgs;
   "git+https://github.com/vitasdk/vita-toolchain.git#recursive" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "vita-toolchain";
-    rev = "bbb2c95d41cd4037df86529217387979745426b6";
-    sha256 = "sha256-sWy2lw7NiXpQlBD4CLYLXOa9FBQClwLfprJRlI+Hwhk=";
+    rev = "08b913cfd1ce4659ae83386ab33f5349a1ff3242";
+    sha256 = "sha256-UpaJSl/QU3WzenG7tRclXcNrzdh/eZhoSqyhpYt0OcA=";
     fetchSubmodules = true;
   };
   "git+https://github.com/xerpi/libftpvita.git" = fetchFromGitHub {
@@ -350,9 +350,9 @@ with pkgs;
     url = "https://github.com/libexpat/libexpat/releases/download/R_2_3_0/expat-2.3.0.tar.bz2";
     sha256 = "f122a20eada303f904d5e0513326c5b821248f2d4d2afbf5c6f1339e511c0586";
   };
-  "https://github.com/libsdl-org/SDL/archive/4761467b2e8cc7db3d6bc98747daca0051858f09.tar.gz" = fetchurl {
-    url = "https://github.com/libsdl-org/SDL/archive/4761467b2e8cc7db3d6bc98747daca0051858f09.tar.gz";
-    sha256 = "2a8980add57db608f81b38a64ecb4db06593ecde556355ea9dbdc9d1f70ab9f2";
+  "https://github.com/libsdl-org/SDL/archive/031912c4b6c5db80b443f04aa56fec3e4e645153.tar.gz" = fetchurl {
+    url = "https://github.com/libsdl-org/SDL/archive/031912c4b6c5db80b443f04aa56fec3e4e645153.tar.gz";
+    sha256 = "a7631a273b41cb160a27ce07d312efd5c2ab6f63a1f5457b327c56e31a98085c";
   };
   "https://github.com/libsdl-org/SDL_net/archive/283e95e3460e8caca7ffacef4b94d82a80e8700f.tar.gz" = fetchurl {
     url = "https://github.com/libsdl-org/SDL_net/archive/283e95e3460e8caca7ffacef4b94d82a80e8700f.tar.gz";
@@ -370,9 +370,9 @@ with pkgs;
     url = "https://raw.githubusercontent.com/isage/openal-soft/master/openal-soft-1.19.1-vita-1.patch";
     sha256 = "4bee4f8da13e740728ff3b3bb0d0db744148c52c969a706e4cdf42b66d8357a5";
   };
-  "https://zlib.net/zlib-1.2.13.tar.xz" = fetchurl {
-    url = "https://zlib.net/zlib-1.2.13.tar.xz";
-    sha256 = "d14c38e313afc35a9a8760dadf26042f51ea0f5d154b0630a31da0540107fb98";
+  "https://www.zlib.net/fossils/zlib-1.2.13.tar.gz" = fetchurl {
+    url = "https://www.zlib.net/fossils/zlib-1.2.13.tar.gz";
+    sha256 = "b3a24de97a8fdbc835b9833169501030b8977031bcb54b3b3ac13740f846ab30";
   };
   "svn://svn.code.sf.net/p/lame/svn/trunk/lame#revision=r6403" = fetchsvn {
     url = "svn://svn.code.sf.net/p/lame/svn/trunk/lame";
