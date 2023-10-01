@@ -83,8 +83,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/vitaGL.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "vitaGL";
-    rev = "17e5ce5c4482ab2472de19e89f1681b3944c7d19";
-    sha256 = "sha256-DYg80lsgHphRDjYif4l66Z+YtOYWzGGqSFsNlgOHkJU=";
+    rev = "cd7dab0ccdb712fd918f58675127d54072bd21f9";
+    sha256 = "sha256-y1UZ04gwyctALcq2Xm8fWbJHJVtNDJ1SWaEHmhrj2Ao=";
   };
   "git+https://github.com/SonicMastr/Pigs-In-A-Blanket.git" = fetchFromGitHub {
     owner = "SonicMastr";
@@ -233,14 +233,14 @@ with pkgs;
   "git+https://github.com/vitasdk/newlib.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "newlib";
-    rev = "a13cf8c24f2bd8c4caf3be584c34147432df7887";
-    sha256 = "sha256-ItgdV3gDPDyBtLKEwydSSXg1h65ZfwjAtAAHAjA5GA8=";
+    rev = "a56aebe39d31fc6ad28f06264ff81b08274698fb";
+    sha256 = "sha256-HSWwStyfB5LXqrsL4h3O+627ecIK3K1gVVmUWA+kRoE=";
   };
   "git+https://github.com/vitasdk/packages.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "packages";
-    rev = "713690d104d4c6a783cc1f24d482173f44189cc7";
-    sha256 = "sha256-YHMe9Jyk+MFxmnnLj8FN7HNRADUMcbYUYLTm9MrNKFk=";
+    rev = "c6f15d2ae6069f3c3e1dcac36ae2a710c4792d2d";
+    sha256 = "sha256-ajZMOqyOQqTtRntY3iiAY7A6EgzS4zP3Tcl6/ygGr+o=";
   };
   "git+https://github.com/vitasdk/pthread-embedded.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -251,8 +251,8 @@ with pkgs;
   "git+https://github.com/vitasdk/samples.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "samples";
-    rev = "9fa094d0ac11f32fa8474099b41703e56df52597";
-    sha256 = "sha256-UKoHneBOlRkIPpeHV0Go4TK1nMj9ytzcqklXU6F7nBY=";
+    rev = "e597a60163e28b64848dab76b8c17419870b13b3";
+    sha256 = "sha256-2NPpmmKZRXCR2xYXfDpXdt4xSlmfSERWy35YeMM8OJ8=";
   };
   "git+https://github.com/vitasdk/vdpm.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -263,8 +263,8 @@ with pkgs;
   "git+https://github.com/vitasdk/vita-headers.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "vita-headers";
-    rev = "318b99273835e388cda603af4a8acf5d616ed1ee";
-    sha256 = "sha256-ZyIfQU95Dc8rZHuZ3eKvBacIWV/tUX8nXXlqcgyTk3Q=";
+    rev = "b0ab6f2726e99a159e35f347ad094d120c028f3a";
+    sha256 = "sha256-5XDgtMcjh2XKYiQ2YDI3sH+0KY8FZEeQU//XvNo2oZI=";
   };
   "git+https://github.com/vitasdk/vita-makepkg.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -294,8 +294,8 @@ with pkgs;
   "git+https://github.com/xerpi/vita-libbaremetal.git" = fetchFromGitHub {
     owner = "xerpi";
     repo = "vita-libbaremetal";
-    rev = "861bde8d86212e79692c96c847feafb099e1a572";
-    sha256 = "sha256-lHPHw/aglgmaplth54t7jhgLg3/8LBlQwrGDBCT7xlQ=";
+    rev = "9c27ff62c12ae38455dfbe77017799e4c8bac557";
+    sha256 = "sha256-eMyZT22kAmpUrtOXEd3RK5cyokfwi0tRSfwEj6gMovg=";
   };
   "git+https://gitlab.xiph.org/xiph/tremor.git#commit=89a7534bf2e70112e0354452b17a78675ca92dbf" = fetchgit {
     url = "https://gitlab.xiph.org/xiph/tremor";
