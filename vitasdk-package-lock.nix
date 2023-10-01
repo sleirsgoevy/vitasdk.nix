@@ -17,8 +17,8 @@ with pkgs;
   "git+https://github.com/DaveeFTW/libk.git#branch=dev" = fetchFromGitHub {
     owner = "DaveeFTW";
     repo = "libk";
-    rev = "0c82a51b0c90a616a585af102e3b3a8306626af7";
-    sha256 = "sha256-PVsX5M+xluWhz5aX/B9oyaS1wAsW5ZSQ56UhXR8Gqig=";
+    rev = "5aa300ce6c3c72c91fc417bd01df298ea6410044";
+    sha256 = "sha256-YTNkYCv+sXijrhojBJ0tSB5D4YCVIWLI7Anc7qrJzvU=";
   };
   "git+https://github.com/DrakonPL/bullet-physics-vita.git" = fetchFromGitHub {
     owner = "DrakonPL";
@@ -98,11 +98,17 @@ with pkgs;
     rev = "4f6d0590f16b7c55e0656b7c93a676fc10d1a1bc";
     sha256 = "sha256-kAZg2ZMEsz6/YFKsLbrfq9AQrquavMR0uzGRdYqb9/Y=";
   };
-  "git+https://github.com/SonicMastr/vita-openssl3.git" = fetchFromGitHub {
+  "git+https://github.com/SonicMastr/cpython-vita.git#branch=3.11" = fetchFromGitHub {
+    owner = "SonicMastr";
+    repo = "cpython-vita";
+    rev = "fa69d3fb79272d8257fb0fb4a89c87a9cd716ee7";
+    sha256 = "sha256-m3X/vpmK+bkbpl8mU8lFBxeut3sEh7iwCJNVh1F2Ndk=";
+  };
+  "git+https://github.com/SonicMastr/vita-openssl3.git#branch=OpenSSL_1_1_1-vita" = fetchFromGitHub {
     owner = "SonicMastr";
     repo = "vita-openssl3";
-    rev = "e0fbaf2a4add8dd012b92923b0f23e87b1d28482";
-    sha256 = "sha256-tnHLgOIs8lVZPwDJp2KiQUBENykY4ol9KEYTU7JV+5s=";
+    rev = "0a851f7911a89ad82f0f3ada54939bb12acdd476";
+    sha256 = "sha256-0poyaJ/dB8K3AQRefSpyKtMhFiCj7aGt8MosG/b09ag=";
   };
   "git+https://github.com/TheOfficialFloW/kubridge.git" = fetchFromGitHub {
     owner = "TheOfficialFloW";
@@ -239,8 +245,8 @@ with pkgs;
   "git+https://github.com/vitasdk/packages.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "packages";
-    rev = "c6f15d2ae6069f3c3e1dcac36ae2a710c4792d2d";
-    sha256 = "sha256-ajZMOqyOQqTtRntY3iiAY7A6EgzS4zP3Tcl6/ygGr+o=";
+    rev = "a639b5941ce9ef29b5eec181a00b28d171e8d942";
+    sha256 = "sha256-Ry5RjGX4iXlVFp3TaMNj+h+SQzlkYpetMCoLO1b3oXY=";
   };
   "git+https://github.com/vitasdk/pthread-embedded.git" = fetchFromGitHub {
     owner = "vitasdk";

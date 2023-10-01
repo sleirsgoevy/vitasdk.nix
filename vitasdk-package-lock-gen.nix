@@ -1,6 +1,7 @@
 { pkgs ? import<nixpkgs>{},
   vitabuild-parser ? import ./vitabuild-parser.nix { inherit pkgs; },
-  core-inputs ? import ./vitasdk-core-inputs.nix }:
+  core-inputs ? import ./vitasdk-core-inputs.nix,
+  packages ? null }:
 
 with pkgs;
 with vitabuild-parser;
@@ -52,6 +53,8 @@ let
         else null;
       ref = if stringContains "#tag=" url
         then "refs/tags/${builtins.elemAt (lib.splitString "#tag=" url) 1}"
+        else if stringContains "#branch" url
+        then "${builtins.elemAt (lib.splitString "#branch=" url) 1}"
         else null;
       fetchSubmodules = stringContains "#recursive" url;
     in git { url = real_url; inherit rev ref fetchSubmodules; }
@@ -87,5 +90,5 @@ in
 
 writeTextFile {
   name = "vita-package-lock.nix";
-  text = formatLockfile (uniq ((map (f: f.object) core-inputs.subprojects) ++ core-inputs.tarballs ++ [ core-inputs.src repoUrl ] ++ getNonPinnedSourcesForRepo (urlFetch repoUrl))) manualLock;
+  text = formatLockfile (uniq ((map (f: f.object) core-inputs.subprojects) ++ core-inputs.tarballs ++ [ core-inputs.src repoUrl ] ++ getNonPinnedSourcesForRepo (if packages != null then "${packages}" else urlFetch repoUrl))) manualLock;
 }

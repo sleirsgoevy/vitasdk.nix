@@ -26,7 +26,7 @@ let
       then { isGit = true; origin = builtins.substring 4 (l - 4) url; }
       else { isGit = false; origin = url; }
   ) // (let
-    sp = lib.splitString "#commit=" (builtins.concatStringsSep "#commit=" (lib.splitString "#tag=" fst));
+    sp = lib.splitString "#commit=" (builtins.concatStringsSep "#commit=" (lib.splitString "#tag=" (builtins.concatStringsSep "#commit=" (lib.splitString "#branch=" fst))));
   in if (builtins.length sp) == 2
     then { hasCommitHash = true; commitHash = (builtins.elemAt sp 1); }
     else { hasCommitHash = false; commitHash = ""; }
@@ -56,10 +56,12 @@ let
         git config user.name stub
         git config user.email stub@example.org
         GIT_COMMITTER_DATE='Jan 1 00:00:00 1970 +0000' git commit -m 123 --date 'Jan 1 00:00:00 1970 +0000'
-        git remote add origin ${q.origin}
+        git remote add origin "file:///$PWD"
         ${if q.hasCommitHash then ''
           git checkout -b ${q.commitHash}
+          git push origin ${q.commitHash}
         '' else ""}
+        git remote set-url origin ${q.origin}
       ); fi
     '' else "") (getSourceDerivations lockfile path));
     buildPhase = "vita-makepkg";
