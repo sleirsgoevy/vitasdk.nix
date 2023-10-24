@@ -59,8 +59,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/kuio.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "kuio";
-    rev = "031e50f4ca7f72c8935a8cfd1bb6476d3bd99235";
-    sha256 = "sha256-R6M8QQnj4brU7BBjCAHySqKbGymRJf2rbFSYyHmB5ng=";
+    rev = "48762fc041e707207008b9d294ca8fcfd71b9835";
+    sha256 = "sha256-pHsVy0SBPqN6rLUy65FJ202wnevuTLu73v60+iaObrs=";
   };
   "git+https://github.com/Rinnegatamante/libtoloader.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
@@ -83,8 +83,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/vitaGL.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "vitaGL";
-    rev = "cd7dab0ccdb712fd918f58675127d54072bd21f9";
-    sha256 = "sha256-y1UZ04gwyctALcq2Xm8fWbJHJVtNDJ1SWaEHmhrj2Ao=";
+    rev = "f2650440309beff4da7fed9e663c72ed2db5c5dc";
+    sha256 = "sha256-UbaEWyk0zySNminzXuLa9ZXAHPTt4RaI1dBfbsSRl/w=";
   };
   "git+https://github.com/SonicMastr/Pigs-In-A-Blanket.git" = fetchFromGitHub {
     owner = "SonicMastr";
@@ -185,8 +185,8 @@ with pkgs;
   "git+https://github.com/jbeder/yaml-cpp.git" = fetchFromGitHub {
     owner = "jbeder";
     repo = "yaml-cpp";
-    rev = "37f1b8b8c9e5172ff3a79a3d5fdbb87f2994842b";
-    sha256 = "sha256-YuSaK5Vk5BDWFAHfDD2IVaG9gN5y+poZDLuecwUgI68=";
+    rev = "db03655d58c66f31952c772718d0394eac2e5481";
+    sha256 = "sha256-QTTjKP6Ej1eSyet3Klgf8Hl/cuzNjMYopl/sO8e5Hbg=";
   };
   "git+https://github.com/lecram/gifdec.git" = fetchFromGitHub {
     owner = "lecram";
@@ -239,14 +239,14 @@ with pkgs;
   "git+https://github.com/vitasdk/newlib.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "newlib";
-    rev = "a56aebe39d31fc6ad28f06264ff81b08274698fb";
-    sha256 = "sha256-HSWwStyfB5LXqrsL4h3O+627ecIK3K1gVVmUWA+kRoE=";
+    rev = "b89e5bc183b516945f9ee07eef483ecb916e45ff";
+    sha256 = "sha256-4NWUOPcT8IpPmiPyq9JrDa60iLQ1PtpSdbQ+Ieys/Qk=";
   };
   "git+https://github.com/vitasdk/packages.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "packages";
-    rev = "a639b5941ce9ef29b5eec181a00b28d171e8d942";
-    sha256 = "sha256-Ry5RjGX4iXlVFp3TaMNj+h+SQzlkYpetMCoLO1b3oXY=";
+    rev = "af0dcbee604ca1aa5e08ffaaac79e22d57ab2ba2";
+    sha256 = "sha256-QwK5B8G6aQgbH13UY8twQchR8oEZHINYUHIJcKC3NRs=";
   };
   "git+https://github.com/vitasdk/pthread-embedded.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -269,8 +269,8 @@ with pkgs;
   "git+https://github.com/vitasdk/vita-headers.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "vita-headers";
-    rev = "b0ab6f2726e99a159e35f347ad094d120c028f3a";
-    sha256 = "sha256-5XDgtMcjh2XKYiQ2YDI3sH+0KY8FZEeQU//XvNo2oZI=";
+    rev = "9f032b7824bfcab766a492ab97627bb1aa8bd3a7";
+    sha256 = "sha256-BF9VKagCZJ1Ur+D4x70dfe80RPzTALGw8PnK3jbjnZE=";
   };
   "git+https://github.com/vitasdk/vita-makepkg.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -281,8 +281,8 @@ with pkgs;
   "git+https://github.com/vitasdk/vita-toolchain.git#recursive" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "vita-toolchain";
-    rev = "08b913cfd1ce4659ae83386ab33f5349a1ff3242";
-    sha256 = "sha256-UpaJSl/QU3WzenG7tRclXcNrzdh/eZhoSqyhpYt0OcA=";
+    rev = "b00a929f60c6b8d59a1c15af327959619c4c8c96";
+    sha256 = "sha256-ZSd1PC9MKvnGAchBxYUXacSq+ZOnF8MZ5Z83gW/gtqM=";
     fetchSubmodules = true;
   };
   "git+https://github.com/xerpi/libftpvita.git" = fetchFromGitHub {
