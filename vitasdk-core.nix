@@ -26,12 +26,13 @@ stdenv.mkDerivation rec {
         git config user.name stub
         git config user.email stub@example.org
         GIT_COMMITTER_DATE='Jan 1 00:00:00 1970 +0000' git commit -m 123 --date 'Jan 1 00:00:00 1970 +0000'
+        git remote add origin "file:///$PWD"
+        git fetch origin
       ); fi
     }
     ${lib.concatMapStrings (i: "copySubproject ${i.path} ${lockfile."${i.object}"} ${({ rmgit = "0"; } // i).rmgit}\n") subprojects}
-    ( cd isl_build-prefix/src/isl_build; git remote add origin "file://$PWD"; git branch isl-0.21; )
-    ( cd libzip_build-prefix/src/libzip_build; git remote add origin "file://$PWD"; )
-    ( cd vita-toolchain_build-prefix/src/vita-toolchain_build; git remote add origin "file://$PWD"; )
+    ( cd isl_build-prefix/src/isl_build; git branch isl-0.21; )
+    ( cd newlib-prefix/src/newlib; git checkout -b vita; git fetch origin; )
     mkdir -p downloads
     ${lib.concatMapStrings (i: "cp ${lockfile."${i}"} downloads/${let arr=builtins.split "/" i; in builtins.elemAt arr ((builtins.length arr)-1)}\n") tarballs}
     sed -i 's #!.* #!${bash}/bin/bash ' ../command_wrapper.sh
