@@ -83,8 +83,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/vitaGL.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "vitaGL";
-    rev = "75e30ba8994d94826ddfefd71e9c3f4571b6b4bb";
-    sha256 = "sha256-84z8r06xznwBdJyWkDyRatQNKsrmRLDmCBy/e9x/7rs=";
+    rev = "93c8fa2dfd9d54f83a77da615422aadd1b30588d";
+    sha256 = "sha256-4cDaQFVFWhVH23LGvyi+4zBGtL6n8tTfgcyfWhwsUA4=";
   };
   "git+https://github.com/SonicMastr/Pigs-In-A-Blanket.git" = fetchFromGitHub {
     owner = "SonicMastr";
@@ -185,8 +185,8 @@ with pkgs;
   "git+https://github.com/jbeder/yaml-cpp.git" = fetchFromGitHub {
     owner = "jbeder";
     repo = "yaml-cpp";
-    rev = "76dc6715734295ff1866bfc32872ff2278258fc8";
-    sha256 = "sha256-DiX0YzNbnhuE+eH0+odHHTw4+/R+xRA6aoyu1ILUsck=";
+    rev = "1d8ca1f35eb3a9c9142462b28282a848e5d29a91";
+    sha256 = "sha256-vGLS3Q0bXq70pcJ+mlWKdgifWZkjaVOIxm85HoqpqEI=";
   };
   "git+https://github.com/lecram/gifdec.git" = fetchFromGitHub {
     owner = "lecram";
@@ -245,8 +245,8 @@ with pkgs;
   "git+https://github.com/vitasdk/packages.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "packages";
-    rev = "c8c3a00f6dbfca0fe0ae0b545797fa56a079bbe3";
-    sha256 = "sha256-YUGlqG29aUFp6Hkwp7m79AElnLrTlcOD+xOhde68W5k=";
+    rev = "d23557d986ff63805cf10cb2c449c386fcb38ea7";
+    sha256 = "sha256-R1jKRxFBg3uAeBoc+4AFy7PSbIclEJvRHacNWrZvQY4=";
   };
   "git+https://github.com/vitasdk/pthread-embedded.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -356,9 +356,9 @@ with pkgs;
     url = "https://github.com/libexpat/libexpat/releases/download/R_2_3_0/expat-2.3.0.tar.bz2";
     sha256 = "f122a20eada303f904d5e0513326c5b821248f2d4d2afbf5c6f1339e511c0586";
   };
-  "https://github.com/libsdl-org/SDL/archive/15ead9a40d09a1eb9972215cceac2bf29c9b77f6.tar.gz" = fetchurl {
-    url = "https://github.com/libsdl-org/SDL/archive/15ead9a40d09a1eb9972215cceac2bf29c9b77f6.tar.gz";
-    sha256 = "01ef30262393a538c89b7a4b007dcb9b44d5dfae53e38be2ef8daac3e9113373";
+  "https://github.com/libsdl-org/SDL/archive/f461d91cd265d7b9a44b4d472b1df0c0ad2855a0.tar.gz" = fetchurl {
+    url = "https://github.com/libsdl-org/SDL/archive/f461d91cd265d7b9a44b4d472b1df0c0ad2855a0.tar.gz";
+    sha256 = "95850b99c5b3c5b3407f5ff1fc0b0a8e811ad4c7f05281b275324f54eb982cdc";
   };
   "https://github.com/libsdl-org/SDL_net/archive/283e95e3460e8caca7ffacef4b94d82a80e8700f.tar.gz" = fetchurl {
     url = "https://github.com/libsdl-org/SDL_net/archive/283e95e3460e8caca7ffacef4b94d82a80e8700f.tar.gz";
