@@ -83,8 +83,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/vitaGL.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "vitaGL";
-    rev = "93c8fa2dfd9d54f83a77da615422aadd1b30588d";
-    sha256 = "sha256-4cDaQFVFWhVH23LGvyi+4zBGtL6n8tTfgcyfWhwsUA4=";
+    rev = "72a4ba128c1dfd78a82180ad7ab8ab9880c1d267";
+    sha256 = "sha256-4N6EHXcfxcYlMb+U+F9MEUn2SFI/qfQ4IGRQOWAfB+U=";
   };
   "git+https://github.com/SonicMastr/Pigs-In-A-Blanket.git" = fetchFromGitHub {
     owner = "SonicMastr";
@@ -263,8 +263,8 @@ with pkgs;
   "git+https://github.com/vitasdk/vdpm.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "vdpm";
-    rev = "0cf96d3e4e6f8eebf1cafcbe08827747feadc59d";
-    sha256 = "sha256-PZI2M/YZ7i1QngkWm+hQ/nfkn4a1UpDhB1tl6ZP3ekU=";
+    rev = "426032a2fd05300cf9ef04e5f691f07f642c14cf";
+    sha256 = "sha256-VA7ufpaDsxMyeLm0cQChlN7n9I23kFkOVDWKvS1rPak=";
   };
   "git+https://github.com/vitasdk/vita-headers.git" = fetchFromGitHub {
     owner = "vitasdk";
