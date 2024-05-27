@@ -14,4 +14,6 @@ rec {
     sed -i 's:/bin/bash:${bash}/bin/bash:' VITABUILD
   '';
   deps."openssl-1.1.1" = deps.openssl;
+
+  deps.asio = [ autoconf automake ];
 }

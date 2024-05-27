@@ -83,8 +83,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/vitaGL.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "vitaGL";
-    rev = "72a4ba128c1dfd78a82180ad7ab8ab9880c1d267";
-    sha256 = "sha256-4N6EHXcfxcYlMb+U+F9MEUn2SFI/qfQ4IGRQOWAfB+U=";
+    rev = "b7aa9235df5142dac9e7abb96fcb9e068f82938b";
+    sha256 = "sha256-quPqIqZesCPZISAgzlQ2RV/lCvpGJ9LgiX5KT/D6rVY=";
   };
   "git+https://github.com/SonicMastr/Pigs-In-A-Blanket.git" = fetchFromGitHub {
     owner = "SonicMastr";
