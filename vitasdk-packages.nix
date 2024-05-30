@@ -38,7 +38,7 @@ let
     version = "${getVersion path}-${getPkgrel path}-vitasdk";
     src = path;
     buildInputs = [ vitasdk ] ++ (getDependencyDerivations repo path);
-    nativeBuildInputs = [ vitasdk cmake pkg-config which libarchive fakeroot fakeVdpm git ] ++ ({ "${getName path}" = []; } // overrides.deps)."${getName path}";
+    nativeBuildInputs = [ vitasdk cmake pkg-config which libarchive fakeroot fakeVdpm git autoconf automake libtool ] ++ ({ "${getName path}" = []; } // overrides.deps)."${getName path}";
     phases = [ "unpackPhase" "copyPhase" "patchPhase" "buildPhase" "installPhase" ];
     copyPhase = (lib.concatMapStrings (q: ''
       cp -r ${q.object} ${q.path}

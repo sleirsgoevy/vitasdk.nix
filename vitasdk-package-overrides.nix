@@ -15,5 +15,13 @@ rec {
   '';
   deps."openssl-1.1.1" = deps.openssl;
 
-  deps.asio = [ autoconf automake ];
+  patches.libimagequant = ''
+    patchShebangs --build libimagequant
+  '';
+
+  deps.libmikmod = [ texinfo ];
+
+  deps."libsigc++-2.0" = [ m4 ];
+
+  deps.curl = [ perl ];
 }
