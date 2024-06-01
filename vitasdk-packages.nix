@@ -8,7 +8,7 @@ with pkgs;
 with vitabuild-parser;
 
 let
-  getSourceDerivations = lockfile: path: builtins.map ({fst, snd}: let
+  getSourceDerivations = lockfile: path: extra: builtins.map ({fst, snd}: let
     url = (builtins.elemAt (lib.splitString "#" fst) 0);
     basename = builtins.baseNameOf url;
     l = builtins.stringLength basename;
@@ -30,20 +30,21 @@ let
   in if (builtins.length sp) == 2
     then { hasCommitHash = true; commitHash = (builtins.elemAt sp 1); }
     else { hasCommitHash = false; commitHash = ""; }
-  )) (lib.zipLists (getSources path) (getShaSums path));
+  )) ((lib.zipLists (getSources path) (getShaSums path)) ++ (map (x: { fst = x; snd = "SKIP"; }) extra));
   getDependencyDerivations = repo: path: builtins.map (x: repo."${x}") (getDepends path);
   fakeVdpm = writeShellScriptBin "vdpm" "";
-  buildPackage = lockfile: overrides: repo: path: stdenv.mkDerivation {
+  buildPackage = lockfile: overrides: repo: path: stdenvNoCC.mkDerivation {
     name = getName path;
     version = "${getVersion path}-${getPkgrel path}-vitasdk";
     src = path;
-    buildInputs = [ vitasdk ] ++ (getDependencyDerivations repo path);
+    buildInputs = [ vitasdk ] ++ (getDependencyDerivations repo path) ++ (({ "${getName path}" = f: []; } // overrides.vitaDeps)."${getName path}" repo);
+    propagatedBuildInputs = ({ "${getName path}" = f: []; } // overrides.propagatedBuildInputs)."${getName path}" repo;
     nativeBuildInputs = [ vitasdk cmake pkg-config which libarchive fakeroot fakeVdpm git autoconf automake libtool ] ++ ({ "${getName path}" = []; } // overrides.deps)."${getName path}";
-    phases = [ "unpackPhase" "copyPhase" "patchPhase" "buildPhase" "installPhase" ];
+    phases = [ "unpackPhase" "copyPhase" "patchPhase" "buildPhase" "installPhase" "fixupPhase" ];
     copyPhase = (lib.concatMapStrings (q: ''
       cp -r ${q.object} ${q.path}
       chmod -R +w ${q.path}
-    '') (getSourceDerivations lockfile path)) + ''
+    '') (getSourceDerivations lockfile path ({ "${getName path}" = []; } // overrides.extraSources)."${getName path}")) + ''
       ln -s ${vitasdk} $out
       export VITASDK=$out
     '';
@@ -58,13 +59,15 @@ let
         GIT_COMMITTER_DATE='Jan 1 00:00:00 1970 +0000' git commit -m 123 --date 'Jan 1 00:00:00 1970 +0000'
         git remote add origin "file:///$PWD"
         ${if q.hasCommitHash then ''
-          git checkout -b ${q.commitHash}
+          git checkout -B ${q.commitHash}
           git push origin ${q.commitHash}
         '' else ""}
         git remote set-url origin ${q.origin}
       ); fi
-    '' else "") (getSourceDerivations lockfile path));
-    buildPhase = "vita-makepkg";
+    '' else "") (getSourceDerivations lockfile path ({ "${getName path}" = []; } // overrides.extraSources)."${getName path}"));
+    buildPhase = ''
+      env -u PKG_CONFIG PATH="${gcc}/bin:${binutils}/bin:$PATH" vita-makepkg
+    '';
     installPhase = ''
       rm $out
       mv pkg/*/$VITASDK $out
@@ -72,6 +75,8 @@ let
       cat > $out/nix-support/setup-hook << EOF
       export VITASDK_PKG_CONFIG_EXTRA_PATHS="\${"$"}{VITASDK_PKG_CONFIG_EXTRA_PATHS:-}:$out/arm-vita-eabi/lib/pkgconfig:$out/arm-vita-eabi/share/pkgconfig"
       export VITASDK_EXTRA_CFLAGS="\${"$"}{VITASDK_EXTRA_CFLAGS:-} -I $out/arm-vita-eabi/include -L $out/arm-vita-eabi/lib"
+      export VITASDK_CMAKE_EXTRA_PATHS="\${"$"}{VITASDK_CMAKE_EXTRA_PATHS:-};$out/arm-vita-eabi"
+      export CMAKE_PREFIX_PATH="\${"$"}{CMAKE_PREFIX_PATH:+\$CMAKE_PREFIX_PATH:}:$out/arm-vita-eabi"
       EOF
     '';
   };

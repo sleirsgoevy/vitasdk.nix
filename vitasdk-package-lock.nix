@@ -83,8 +83,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/vitaGL.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "vitaGL";
-    rev = "b7aa9235df5142dac9e7abb96fcb9e068f82938b";
-    sha256 = "sha256-quPqIqZesCPZISAgzlQ2RV/lCvpGJ9LgiX5KT/D6rVY=";
+    rev = "85645b7838c08bc034cb7a38f5b7ccb1adb86cd1";
+    sha256 = "sha256-XIo4i7D7QZg14ZYD3dAiMd9RPHnhd3HPvfHyVvjT06k=";
   };
   "git+https://github.com/SonicMastr/Pigs-In-A-Blanket.git" = fetchFromGitHub {
     owner = "SonicMastr";
@@ -302,6 +302,12 @@ with pkgs;
     repo = "vita-libbaremetal";
     rev = "656a53761f019acbb5046034e82f4038cadafced";
     sha256 = "sha256-5qcpB6+2M9UVewlHmMloQSqMguqXMAqfv1CounKPA0A=";
+  };
+  "git+https://github.com/ytdl-org/youtube-dl" = fetchFromGitHub {
+    owner = "ytdl-org";
+    repo = "youtube-dl";
+    rev = "21924742f79ccbd62d16ef4120518c6a5da8614e";
+    sha256 = "sha256-6zCWTYdiEQYdlyQPRUF6tHBbgE9t6FQEZAcyk6FQNJ4=";
   };
   "git+https://gitlab.xiph.org/xiph/tremor.git#commit=89a7534bf2e70112e0354452b17a78675ca92dbf" = fetchgit {
     url = "https://gitlab.xiph.org/xiph/tremor";

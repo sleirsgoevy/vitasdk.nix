@@ -1,7 +1,8 @@
 { pkgs ? import<nixpkgs>{},
   vitabuild-parser ? import ./vitabuild-parser.nix { inherit pkgs; },
   core-inputs ? import ./vitasdk-core-inputs.nix,
-  packages ? null }:
+  packages ? null,
+  overrides ? import ./vitasdk-package-overrides.nix { inherit pkgs; } }:
 
 with pkgs;
 with vitabuild-parser;
@@ -66,8 +67,8 @@ let
   urlFetch = handleURL fetchgitImpure builtins.fetchurl urlNotSupported;
   urlIsSupported = handleURL (x: true) (x: true) (x: false);
   uniq = list: builtins.attrNames (builtins.foldl' (s: q: s // { "${q}" = true; }) {} list);
-  getNonPinnedSources = path: map ({fst, snd}: fst) (lib.filter ({fst, snd}: snd == "SKIP" && !(!(stringContains "/" fst) && builtins.pathExists "${path}/${fst}") && (urlIsSupported fst)) (lib.zipLists (getSources path) (getShaSums path)));
-  getNonPinnedSourcesForRepo = repo: builtins.concatLists (map (x: getNonPinnedSources "${repo}/${x}") (getAllPackages repo));
+  getNonPinnedSources = name: path: map ({fst, snd}: fst) (lib.filter ({fst, snd}: snd == "SKIP" && !(!(stringContains "/" fst) && builtins.pathExists "${path}/${fst}") && (urlIsSupported fst)) ((lib.zipLists (getSources path) (getShaSums path)) ++ (map (x: { fst = x; snd = "SKIP"; }) ({ "${name}" = []; } // overrides.extraSources)."${name}")));
+  getNonPinnedSourcesForRepo = repo: builtins.concatLists (map (x: getNonPinnedSources "${x}" "${repo}/${x}") (getAllPackages repo));
   formatLockfile = urls: manual: ''
     { pkgs ? import<nixpkgs>{} }:
 

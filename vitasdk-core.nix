@@ -58,6 +58,7 @@ stdenv.mkDerivation rec {
     cat > $out/nix-support/setup-hook << EOF
     export VITASDK="$out"
     EOF
+    sed -i 's:\(set( CMAKE_FIND_ROOT_PATH.*arm-vita-eabi\)":\1$ENV{VITASDK_CMAKE_EXTRA_PATHS}":' $out/share/vita.toolchain.cmake
   '';
   enableParallelBuilding = true;
   NIX_CFLAGS_COMPILE = "-Wno-format-security";
