@@ -18,4 +18,4 @@ Note that this way you cannot add libraries to your shell without writing a flak
 
 ## Packages
 
-Derivations for all [official VitaSDK packages](https://github.com/vitasdk/packages) are generated, however not all of them actually compile or even evaluate successfully. For example, one package has its source hosted on SVN, which the current lockfile generator does not support.
+Derivations for all 121 [official VitaSDK packages](https://github.com/vitasdk/packages) are generated and build correctly, however most of them are not tested.
