@@ -11,6 +11,8 @@ rec {
       IFS='${sep}'
       echo -n "${"$"+var}" > $out
     '';
+    allowSubstitutes = false;
+    preferLocalBuild = true;
   }}";
   nonEmptySplit = sep: s: if s == "" then [] else lib.splitString sep s;
   getName = getPkgVariable "\n" "pkgname";

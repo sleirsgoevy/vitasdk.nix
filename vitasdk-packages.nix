@@ -83,6 +83,7 @@ let
   makeRepo = super: dir: lib.fix (self: super // {
     buildPackage = buildPackage super.lockfile super.overrides self;
     makeRepo = makeRepo self;
+    overrideLockfile = override: makeRepo (super // { lockfile = super.lockfile // override; }) dir;
   } // (builtins.foldl' (s: q: s // { "${q}" = self.buildPackage "${dir}/${q}"; }) {} (getAllPackages dir)));
 in
 
