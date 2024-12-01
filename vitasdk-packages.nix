@@ -84,6 +84,7 @@ let
     buildPackage = buildPackage super.lockfile super.overrides self;
     makeRepo = makeRepo self;
     overrideLockfile = override: makeRepo (super // { lockfile = super.lockfile // override; }) dir;
+    addOverrides = override: makeRepo (super // { overrides = builtins.mapAttrs (k: v: (override // super.overrides).${k} // (super.overrides // override).${k}) (super.overrides // override); }) dir;
   } // (builtins.foldl' (s: q: s // { "${q}" = self.buildPackage "${dir}/${q}"; }) {} (getAllPackages dir)));
 in
 
