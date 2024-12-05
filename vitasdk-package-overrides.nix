@@ -24,6 +24,7 @@ rec {
   deps."libsigc++-2.0" = [ m4 ];
 
   deps.curl = [ perl ];
+  propagatedBuildInputs.curl = f: with f; [ openssl zlib ];
 
   deps.libconfig = [ texinfo ];
 
