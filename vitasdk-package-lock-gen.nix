@@ -9,7 +9,8 @@ with vitabuild-parser;
 
 let
   maybeAttr = attr: value: if value == null then {} else { "${attr}" = value; };
-  fetchgit' = { url, rev ? null, ref ? null, fetchSubmodules ? false }: builtins.fetchGit ({ inherit url; submodules = fetchSubmodules; allRefs = rev != null; shallow = true; } // (maybeAttr "ref" ref) // (maybeAttr "rev" rev));
+  # shallow=true fails when fetching deep-inside commits
+  fetchgit' = { url, rev ? null, ref ? null, fetchSubmodules ? false }: builtins.fetchGit ({ inherit url; submodules = fetchSubmodules; allRefs = rev != null; shallow = false; } // (maybeAttr "ref" ref) // (maybeAttr "rev" rev));
   getRev = { url, rev ? null, ref ? null, fetchSubmodules ? false }: if rev == null && commitOverrides ? "${url}" then commitOverrides."${url}" else (fetchgit' { inherit url rev ref fetchSubmodules; }).rev;
   getHash = { url, rev ? null, ref ? null, fetchSubmodules ? false }: (fetchgit' { inherit url fetchSubmodules; rev = getRev { inherit url rev ref fetchSubmodules; }; }).narHash;
   startsWith = prefix: s: (builtins.stringLength s) >= (builtins.stringLength prefix) && (builtins.substring 0 (builtins.stringLength prefix) s) == prefix;
