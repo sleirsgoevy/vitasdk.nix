@@ -47,7 +47,7 @@ let
         sha256 = "${builtins.hashFile "sha256" (builtins.fetchurl url)}";
       };
   '';
-  handleURL = git: wget: fail: url: if startsWith "git+" url
+  handleURL = git: wget: fail: url: (url: if startsWith "git+" url
     then let
       real_url = removeSuffix ".git" (removePrefix "git+" (builtins.elemAt (lib.splitString "#" url) 0));
       rev = if stringContains "#commit=" url
@@ -62,7 +62,7 @@ let
     in git { url = real_url; inherit rev ref fetchSubmodules; }
     else if (startsWith "http://" url) || (startsWith "https://" url)
     then wget { inherit url; }
-    else fail url;
+    else fail url) (builtins.trace "fetching ${url}..." url);
   urlNotSupported = url: throw "URL not supported: ${url}";
   urlFormat = url: "  \"${url}\" = " + (handleURL fetchgitFormat wgetFormat urlNotSupported url);
   urlFetch = handleURL fetchgitImpure builtins.fetchurl urlNotSupported;
