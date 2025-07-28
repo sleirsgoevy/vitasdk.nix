@@ -384,6 +384,10 @@ with pkgs;
     url = "https://raw.githubusercontent.com/isage/openal-soft/master/openal-soft-1.19.1-vita-1.patch";
     sha256 = "4bee4f8da13e740728ff3b3bb0d0db744148c52c969a706e4cdf42b66d8357a5";
   };
+  "https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.6.3.tar.gz" = fetchurl {
+    url = "https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.6.3.tar.gz";
+    sha256 = "931c9be5bf1d7c8fae9b7dc157828b7eee874e23c7f24b44ba7eff6b4836312c";
+  };
   "https://www.zlib.net/fossils/zlib-1.2.13.tar.gz" = fetchurl {
     url = "https://www.zlib.net/fossils/zlib-1.2.13.tar.gz";
     sha256 = "b3a24de97a8fdbc835b9833169501030b8977031bcb54b3b3ac13740f846ab30";

@@ -125,5 +125,10 @@ rec {
       cp packages/sdl2/VITABUILD .
     '';
     vitaDeps.sdl2 = f: with f; [ vitaGL ];
+
+    sources.sdl2_image = [ "https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.6.3.tar.gz" "git+https://github.com/vitasdk-softfp/packages.git" ];
+    patches.sdl2_image = ''
+      cp packages/sdl2_image/VITABUILD packages/sdl2_image/pkg-config-fix.patch .
+    '';
   };
 }
