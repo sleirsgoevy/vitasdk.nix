@@ -68,7 +68,7 @@ let
   urlFetch = handleURL fetchgitImpure builtins.fetchurl urlNotSupported;
   urlIsSupported = handleURL (x: true) (x: true) (x: false);
   uniq = list: builtins.attrNames (builtins.foldl' (s: q: s // { "${q}" = true; }) {} list);
-  getNonPinnedSources = name: path: map ({fst, snd}: fst) (lib.filter ({fst, snd}: snd == "SKIP" && !(!(stringContains "/" fst) && builtins.pathExists "${path}/${fst}") && (urlIsSupported fst)) ((lib.zipLists (getSources path) (getShaSums path)) ++ (map (x: { fst = x; snd = "SKIP"; }) ({ "${name}" = []; } // overrides.extraSources)."${name}")));
+  getNonPinnedSources = name: path: map ({fst, snd}: fst) (lib.filter ({fst, snd}: snd == "SKIP" && !(!(stringContains "/" fst) && builtins.pathExists "${path}/${fst}") && (urlIsSupported fst)) ((lib.zipLists (getSources path) (getShaSums path)) ++ (map (x: { fst = x; snd = "SKIP"; }) ((overrides.extraSources."${name}" or []) ++ (overrides.softfpOverrides.extraSources."${name}" or []) ++ (overrides.sources."${name}" or []) ++ (overrides.softfpOverrides.sources."${name}" or [])))));
   getNonPinnedSourcesForRepo = repo: builtins.concatLists (map (x: getNonPinnedSources "${x}" "${repo}/${x}") (getAllPackages repo));
   formatLockfile = urls: manual: ''
     { pkgs ? import<nixpkgs>{} }:

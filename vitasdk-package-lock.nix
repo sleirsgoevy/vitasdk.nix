@@ -83,8 +83,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/vitaGL.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "vitaGL";
-    rev = "db1303d8e85eb6fd71119e90b4409cb77b4d03f1";
-    sha256 = "sha256-1dAS5sMGjlNgi01LrNQ4enZqR+N/FJPqqun3Z77F2Ek=";
+    rev = "04a469cc56da107637d488996d55d252e366b4f4";
+    sha256 = "sha256-VIVZGPkhzsrOmYm7lKs2hYok8imFZ2bn+nnor8clkcc=";
   };
   "git+https://github.com/SonicMastr/Pigs-In-A-Blanket.git" = fetchFromGitHub {
     owner = "SonicMastr";
@@ -224,6 +224,12 @@ with pkgs;
     rev = "bad0b43b7c018178dba8c059df3f9d9bd5ec742d";
     sha256 = "sha256-UsWIVz8//2Ilc8S9XbCFwEs3d6Vr92fioETMViBGeNg=";
   };
+  "git+https://github.com/vitasdk-softfp/packages.git" = fetchFromGitHub {
+    owner = "vitasdk-softfp";
+    repo = "packages";
+    rev = "43ed7747cbd6abc2a0251a27555909c039cc696e";
+    sha256 = "sha256-DIOQ2Apt0tEAz2hFk8JtrEGLHju/pkaZJtZ2Opc7p2g=";
+  };
   "git+https://github.com/vitasdk/buildscripts" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "buildscripts";
@@ -245,8 +251,8 @@ with pkgs;
   "git+https://github.com/vitasdk/packages.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "packages";
-    rev = "2f9631fbe00d10e5ce26262300dfedf6fbfdd0ca";
-    sha256 = "sha256-gz+4PQSbvuDUwdbgTPqJe01sgiufLDwgmliVdUcpdT8=";
+    rev = "7f2849ef5178d41fbdcff04f7f296beef260894c";
+    sha256 = "sha256-GwBopmRxsIvltSWHJxqxakIWESxFYzeP7PBtEh2vgbk=";
   };
   "git+https://github.com/vitasdk/pthread-embedded.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -341,6 +347,10 @@ with pkgs;
   "https://ftp.gnu.org/gnu/mpc/mpc-1.1.0.tar.gz" = fetchurl {
     url = "https://ftp.gnu.org/gnu/mpc/mpc-1.1.0.tar.gz";
     sha256 = "6985c538143c1208dcb1ac42cedad6ff52e267b47e5f970183a3e75125b43c2e";
+  };
+  "https://github.com/Northfear/SDL/archive/refs/heads/vitagl.tar.gz" = fetchurl {
+    url = "https://github.com/Northfear/SDL/archive/refs/heads/vitagl.tar.gz";
+    sha256 = "6c91e77cc47b943ed06daae861126422f8beda07a1096f26b6b47ec9fbdc1858";
   };
   "https://github.com/SonicMastr/LuaJIT-Vita/archive/c329ddd10691c1875f26087ba23c2ae278515e24.tar.gz" = fetchurl {
     url = "https://github.com/SonicMastr/LuaJIT-Vita/archive/c329ddd10691c1875f26087ba23c2ae278515e24.tar.gz";

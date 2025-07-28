@@ -1,5 +1,5 @@
 { pkgs ? import<nixpkgs>{},
-  vitasdk ? import ./vitasdk-core.nix { inherit pkgs; },
+  vitasdk ? pkgs.callPackage ./vitasdk-core.nix { inherit pkgs; },
   lockfile ? import ./vitasdk-package-lock.nix { inherit pkgs; },
   overrides ? import ./vitasdk-package-overrides.nix { inherit pkgs; },
   vitabuild-parser ? import ./vitabuild-parser.nix { inherit pkgs; } }:
@@ -8,7 +8,7 @@ with pkgs;
 with vitabuild-parser;
 
 let
-  getSourceDerivations = lockfile: path: extra: builtins.map ({fst, snd}: let
+  getSourceDerivations = lockfile: path: override: extra: builtins.map ({fst, snd}: let
     url = (builtins.elemAt (lib.splitString "#" fst) 0);
     basename = builtins.baseNameOf url;
     l = builtins.stringLength basename;
@@ -30,25 +30,25 @@ let
   in if (builtins.length sp) == 2
     then { hasCommitHash = true; commitHash = (builtins.elemAt sp 1); }
     else { hasCommitHash = false; commitHash = ""; }
-  )) ((lib.zipLists (getSources path) (getShaSums path)) ++ (map (x: { fst = x; snd = "SKIP"; }) extra));
+  )) (if override != null then (map (x: { fst = x; snd = "SKIP"; }) override) else (lib.zipLists (getSources path) (getShaSums path)) ++ (map (x: { fst = x; snd = "SKIP"; }) extra));
   getDependencyDerivations = repo: path: builtins.map (x: repo."${x}") (getDepends path);
   fakeVdpm = writeShellScriptBin "vdpm" "";
   buildPackage = lockfile: overrides: repo: path: stdenvNoCC.mkDerivation {
     name = getName path;
     version = "${getVersion path}-${getPkgrel path}-vitasdk";
     src = path;
-    buildInputs = [ vitasdk ] ++ (getDependencyDerivations repo path) ++ (({ "${getName path}" = f: []; } // overrides.vitaDeps)."${getName path}" repo);
+    buildInputs = [ repo.vitasdk ] ++ (getDependencyDerivations repo path) ++ (({ "${getName path}" = f: []; } // overrides.vitaDeps)."${getName path}" repo);
     propagatedBuildInputs = ({ "${getName path}" = f: []; } // overrides.propagatedBuildInputs)."${getName path}" repo;
-    nativeBuildInputs = [ vitasdk cmake pkg-config which libarchive fakeroot fakeVdpm git autoconf automake libtool ] ++ ({ "${getName path}" = []; } // overrides.deps)."${getName path}";
+    nativeBuildInputs = [ repo.vitasdk cmake pkg-config which libarchive fakeroot fakeVdpm git autoconf automake libtool ] ++ ({ "${getName path}" = []; } // overrides.deps)."${getName path}";
     phases = [ "unpackPhase" "copyPhase" "patchPhase" "buildPhase" "installPhase" "fixupPhase" ];
     copyPhase = (lib.concatMapStrings (q: ''
       cp -r ${q.object} ${q.path}
       chmod -R +w ${q.path}
-    '') (getSourceDerivations lockfile path ({ "${getName path}" = []; } // overrides.extraSources)."${getName path}")) + ''
-      ln -s ${vitasdk} $out
+    '') (getSourceDerivations lockfile path (overrides.sources."${getName path}" or null) (overrides.extraSources."${getName path}" or []))) + ''
+      ln -s ${repo.vitasdk} $out
       export VITASDK=$out
     '';
-    patchPhase = ({ "${getName path}" = ""; } // overrides.patches)."${getName path}" + "\n" + (lib.concatMapStrings (q: if q.isGit then ''
+    patchPhase = (overrides.patches."${getName path}" or "") + "\n" + (lib.concatMapStrings (q: if q.isGit then ''
       if ! [[ -d ${q.path}/.git ]]; then
       (
         cd ${q.path}
@@ -64,7 +64,7 @@ let
         '' else ""}
         git remote set-url origin ${q.origin}
       ); fi
-    '' else "") (getSourceDerivations lockfile path ({ "${getName path}" = []; } // overrides.extraSources)."${getName path}"));
+    '' else "") (getSourceDerivations lockfile path (overrides.sources."${getName path}" or null) (overrides.extraSources."${getName path}" or [])));
     buildPhase = ''
       env -u PKG_CONFIG PATH="${gcc}/bin:${binutils}/bin:$PATH" vita-makepkg
     '';
@@ -85,7 +85,15 @@ let
     makeRepo = makeRepo self;
     overrideLockfile = override: makeRepo (super // { lockfile = super.lockfile // override; }) dir;
     addOverrides = override: makeRepo (super // { overrides = builtins.mapAttrs (k: v: (override // super.overrides).${k} // (super.overrides // override).${k}) (super.overrides // override); }) dir;
+    softfpPackages = makeRepo super.softfpPackages dir;
   } // (builtins.foldl' (s: q: s // { "${q}" = self.buildPackage "${dir}/${q}"; }) {} (getAllPackages dir)));
 in
 
-makeRepo { inherit lockfile overrides vitasdk; } lockfile."git+https://github.com/vitasdk/packages.git"
+makeRepo (rec {
+  inherit lockfile overrides vitasdk;
+  softfpPackages = {
+    inherit lockfile softfpPackages;
+    vitasdk = vitasdk.override { softfp = true; };
+    overrides = builtins.mapAttrs (k: v: if overrides.softfpOverrides ? "${k}" then (v // overrides.softfpOverrides."${k}") else v) overrides;
+  };
+}) lockfile."git+https://github.com/vitasdk/packages.git"

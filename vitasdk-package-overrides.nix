@@ -110,4 +110,20 @@ rec {
   '';
 
   patches.sdl2_mixer_ext = patches.sdl2_mixer;
+
+  propagatedBuildInputs.uvdb = f: with f; [ kubridge ];
+
+  sources = {};
+
+  softfpOverrides = {
+    patches.vitaGL = ''
+      sed -i 's:HAVE_SBRK=1:SOFTFP_ABI=1:' VITABUILD
+    '';
+
+    sources.sdl2 = [ "https://github.com/Northfear/SDL/archive/refs/heads/vitagl.tar.gz" "git+https://github.com/vitasdk-softfp/packages.git" ];
+    patches.sdl2 = ''
+      cp packages/sdl2/VITABUILD .
+    '';
+    vitaDeps.sdl2 = f: with f; [ vitaGL ];
+  };
 }

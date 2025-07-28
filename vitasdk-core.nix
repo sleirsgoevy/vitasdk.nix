@@ -1,6 +1,7 @@
 { pkgs ? import<nixpkgs>{},
   lockfile ? import ./vitasdk-package-lock.nix { inherit pkgs; },
-  core-inputs ? import ./vitasdk-core-inputs.nix }:
+  core-inputs ? import ./vitasdk-core-inputs.nix,
+  softfp ? false }:
 
 with pkgs;
 with core-inputs;
@@ -9,7 +10,7 @@ stdenv.mkDerivation rec {
   name = "vitasdk";
   src = lockfile."${core-inputs.src}";
   nativeBuildInputs = [ cmake flex bison git autoconf automake texinfo perl libtool pkg-config pypy2 makeWrapper ];
-  configurePhase = "mkdir build; cd build; cmake .. $configureFlags";
+  configurePhase = (lib.optionalString softfp "sed -i 's/--with-float=hard/--with-float=softfp/' CMakeLists.txt; ") + "mkdir build; cd build; cmake .. $configureFlags";
   configureFlags = [ "-DOFFLINE=ON" ];
   preBuild = ''
     copySubproject ()
