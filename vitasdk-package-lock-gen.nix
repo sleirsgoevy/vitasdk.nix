@@ -9,8 +9,27 @@ with vitabuild-parser;
 
 let
   maybeAttr = attr: value: if value == null then {} else { "${attr}" = value; };
+  fixGitAttributes = src: if builtins.pathExists "${src}/.gitattributes" then src // {
+    narHash = builtins.readFile "${stdenv.mkDerivation {
+      name = "gitattributes-fix";
+      inherit src;
+      nativeBuildInputs = [ nix gitMinimal ];
+      phases = [ "unpackPhase" "installPhase" ];
+      installPhase = ''
+        git init
+        git config user.name dummy
+        git config user.email 'dummy@example.org'
+        git add -f .
+        GIT_COMMITTER_DATE='Jan 1 00:00:00 1970 +0000' git commit -m 123 --date 'Jan 1 00:00:00 1970 +0000'
+        mkdir ../out
+        git clone . ../out/source
+        rm -rf ../out/source/.git
+        nix-hash --type sha256 --sri ../out/source | tr -d '\n' > $out
+      '';
+    }}";
+  } else src;
   # shallow=true fails when fetching deep-inside commits
-  fetchgit' = { url, rev ? null, ref ? null, fetchSubmodules ? false }: builtins.fetchGit ({ inherit url; submodules = fetchSubmodules; allRefs = rev != null; shallow = false; } // (maybeAttr "ref" ref) // (maybeAttr "rev" rev));
+  fetchgit' = { url, rev ? null, ref ? null, fetchSubmodules ? false }: fixGitAttributes (builtins.fetchGit ({ inherit url; submodules = fetchSubmodules; allRefs = rev != null; shallow = false; } // (maybeAttr "ref" ref) // (maybeAttr "rev" rev)));
   getRev = { url, rev ? null, ref ? null, fetchSubmodules ? false }: if rev == null && commitOverrides ? "${url}" then commitOverrides."${url}" else (fetchgit' { inherit url rev ref fetchSubmodules; }).rev;
   getHash = { url, rev ? null, ref ? null, fetchSubmodules ? false }: (fetchgit' { inherit url fetchSubmodules; rev = getRev { inherit url rev ref fetchSubmodules; }; }).narHash;
   startsWith = prefix: s: (builtins.stringLength s) >= (builtins.stringLength prefix) && (builtins.substring 0 (builtins.stringLength prefix) s) == prefix;

@@ -61,7 +61,15 @@ rec {
   # XXX: this applies to both cpython and cpython3 packages due to bad package names
   deps.cpython = [
     python311
-    (python27.overrideAttrs (f: { meta = f.meta // { knownVulnerabilities = []; }; }))
+    (stdenv.mkDerivation {
+      name = "python2-pypy-symlink";
+      phases = [ "installPhase" ];
+      installPhase = ''
+        mkdir -p $out/bin
+        ln -s ${pypy}/bin/pypy $out/bin/python2
+        ln -s ${pypy}/bin/pypy $out/bin/python2.7
+      '';
+    })
     p7zip
   ];
   extraSources.cpython = [ "git+https://github.com/ytdl-org/youtube-dl" ];

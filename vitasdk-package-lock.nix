@@ -83,8 +83,8 @@ with pkgs;
   "git+https://github.com/Rinnegatamante/vitaGL.git" = fetchFromGitHub {
     owner = "Rinnegatamante";
     repo = "vitaGL";
-    rev = "04a469cc56da107637d488996d55d252e366b4f4";
-    sha256 = "sha256-VIVZGPkhzsrOmYm7lKs2hYok8imFZ2bn+nnor8clkcc=";
+    rev = "0b18774445c3fc6a83f7f920a9b7cecf87455464";
+    sha256 = "sha256-FVM9Aa53Vxxf6Uwx17MQiu8iwMutxO5tokrqqGISZKo=";
   };
   "git+https://github.com/SonicMastr/Pigs-In-A-Blanket.git" = fetchFromGitHub {
     owner = "SonicMastr";
@@ -96,13 +96,13 @@ with pkgs;
     owner = "SonicMastr";
     repo = "cpython-vita";
     rev = "4f6d0590f16b7c55e0656b7c93a676fc10d1a1bc";
-    sha256 = "sha256-hu5L3a5OklAMDxvv5Ghr5Qgvn5UJ6gd7me0YTP91zBc=";
+    sha256 = "sha256-kAZg2ZMEsz6/YFKsLbrfq9AQrquavMR0uzGRdYqb9/Y=";
   };
   "git+https://github.com/SonicMastr/cpython-vita.git#branch=3.11" = fetchFromGitHub {
     owner = "SonicMastr";
     repo = "cpython-vita";
     rev = "fa69d3fb79272d8257fb0fb4a89c87a9cd716ee7";
-    sha256 = "sha256-B54l2Xj7TJ45WfoRdJ2oLcwLPqMHg9ANUSzbJM1v7xw=";
+    sha256 = "sha256-m3X/vpmK+bkbpl8mU8lFBxeut3sEh7iwCJNVh1F2Ndk=";
   };
   "git+https://github.com/SonicMastr/vita-openssl3.git#branch=OpenSSL_1_1_1-vita" = fetchFromGitHub {
     owner = "SonicMastr";
@@ -179,8 +179,8 @@ with pkgs;
   "git+https://github.com/jbeder/yaml-cpp.git" = fetchFromGitHub {
     owner = "jbeder";
     repo = "yaml-cpp";
-    rev = "2f86d13775d119edbb69af52e5f566fd65c6953b";
-    sha256 = "sha256-GtUTbEaRR3+GfVkt3t8EsqBHVffVKOl8urtQTaHozIo=";
+    rev = "a83cd31548b19d50f3f983b069dceb4f4d50756d";
+    sha256 = "sha256-AGLe4GL5TyeV8s5uQKTps7UZWzZopvh1TqjgG6HRrvg=";
   };
   "git+https://github.com/lecram/gifdec.git" = fetchFromGitHub {
     owner = "lecram";
@@ -227,8 +227,8 @@ with pkgs;
   "git+https://github.com/vitasdk-softfp/packages.git" = fetchFromGitHub {
     owner = "vitasdk-softfp";
     repo = "packages";
-    rev = "43ed7747cbd6abc2a0251a27555909c039cc696e";
-    sha256 = "sha256-DIOQ2Apt0tEAz2hFk8JtrEGLHju/pkaZJtZ2Opc7p2g=";
+    rev = "29ae4e724588de6dcd0b9edc715b3deb082f7f9d";
+    sha256 = "sha256-ZCxpWD88xrvL8Eqv3zhSX7jt7yW+3hADMU2XpGmsCGo=";
   };
   "git+https://github.com/vitasdk/buildscripts" = fetchFromGitHub {
     owner = "vitasdk";
@@ -245,14 +245,14 @@ with pkgs;
   "git+https://github.com/vitasdk/newlib.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "newlib";
-    rev = "5f6d38c8e77d53be0e36065bbb2527512bf19d5e";
-    sha256 = "sha256-sDB7/spLclERScBqcRwqGg718zxg6mO5GiyBZJDmwUs=";
+    rev = "cc7ac21c9594cbeadc6c8e23d8bfcefb777aecf9";
+    sha256 = "sha256-pnvqY/3jeFg2O+n+B9G7f5SxMK8+0s9QSN/AZ7YuBeM=";
   };
   "git+https://github.com/vitasdk/packages.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "packages";
-    rev = "7f2849ef5178d41fbdcff04f7f296beef260894c";
-    sha256 = "sha256-GwBopmRxsIvltSWHJxqxakIWESxFYzeP7PBtEh2vgbk=";
+    rev = "9d2037653d4aee4bfc2e3315e4b2b744a8667d32";
+    sha256 = "sha256-h9vik1qn9qLLQzQFnFvZffiX4hb0wbWvNdpjNi4g/dc=";
   };
   "git+https://github.com/vitasdk/pthread-embedded.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -275,8 +275,8 @@ with pkgs;
   "git+https://github.com/vitasdk/vita-headers.git" = fetchFromGitHub {
     owner = "vitasdk";
     repo = "vita-headers";
-    rev = "a6f389485e88c68c2afedd4080e101b1b6fd08ab";
-    sha256 = "sha256-Iwxs6l0iRoQNY0xWn9WrlSgP2OH0fttXqTgHQpbORr8=";
+    rev = "c25c07aaa6d91c4f4ced721485120fc8305192a3";
+    sha256 = "sha256-ebofs2TcX6FwlqK0QjGAerkJFSiMKxoTcZHflUCWl/k=";
   };
   "git+https://github.com/vitasdk/vita-makepkg.git" = fetchFromGitHub {
     owner = "vitasdk";
@@ -312,8 +312,8 @@ with pkgs;
   "git+https://github.com/ytdl-org/youtube-dl" = fetchFromGitHub {
     owner = "ytdl-org";
     repo = "youtube-dl";
-    rev = "a084c80f7bac9ae343075a97cc0fb2c1c96ade89";
-    sha256 = "sha256-Ksd73heWY0eDv96whvA/SMP2Lziea6hj8N9oh0Kyrc4=";
+    rev = "1e109aaee13a30e2a23f982410ffb3e4f73913df";
+    sha256 = "sha256-M1wVv7P90zPo0F710Yc1zVeT8P9CJpIfA4WJ731aV4Q=";
   };
   "git+https://gitlab.xiph.org/xiph/tremor.git#commit=89a7534bf2e70112e0354452b17a78675ca92dbf" = fetchgit {
     url = "https://gitlab.xiph.org/xiph/tremor";
@@ -350,7 +350,7 @@ with pkgs;
   };
   "https://github.com/Northfear/SDL/archive/refs/heads/vitagl.tar.gz" = fetchurl {
     url = "https://github.com/Northfear/SDL/archive/refs/heads/vitagl.tar.gz";
-    sha256 = "6c91e77cc47b943ed06daae861126422f8beda07a1096f26b6b47ec9fbdc1858";
+    sha256 = "81b3c254f68111896ecfae544f5cb4b88e54864e683a69444bec30ddd106f4be";
   };
   "https://github.com/SonicMastr/LuaJIT-Vita/archive/c329ddd10691c1875f26087ba23c2ae278515e24.tar.gz" = fetchurl {
     url = "https://github.com/SonicMastr/LuaJIT-Vita/archive/c329ddd10691c1875f26087ba23c2ae278515e24.tar.gz";
