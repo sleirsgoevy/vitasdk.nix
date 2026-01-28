@@ -16,32 +16,35 @@ let
       nativeBuildInputs = [ nix gitMinimal ];
       phases = [ "unpackPhase" "installPhase" ];
       installPhase = ''
+        dummyFilename="$(basename "$out")"
         git init
         git config user.name dummy
         git config user.email 'dummy@example.org'
+        find . -type d -empty -exec touch "{}/$dummyFilename" \;
         git add -f .
         GIT_COMMITTER_DATE='Jan 1 00:00:00 1970 +0000' git commit -m 123 --date 'Jan 1 00:00:00 1970 +0000'
-        mkdir ../out
-        git clone . ../out/source
-        rm -rf ../out/source/.git
+        mkdir -p ../out/source
+        git archive --format=tar -o /dev/stdout HEAD | ( cd ../out/source; tar -xvf -; )
+        find ../out/source -name "$dummyFilename" -exec rm {} \;
         nix-hash --type sha256 --sri ../out/source | tr -d '\n' > $out
       '';
+      preferLocalBuild = true;
     }}";
   } else src;
   # shallow=true fails when fetching deep-inside commits
-  fetchgit' = { url, rev ? null, ref ? null, fetchSubmodules ? false }: fixGitAttributes (builtins.fetchGit ({ inherit url; submodules = fetchSubmodules; allRefs = rev != null; shallow = false; } // (maybeAttr "ref" ref) // (maybeAttr "rev" rev)));
-  getRev = { url, rev ? null, ref ? null, fetchSubmodules ? false }: if rev == null && commitOverrides ? "${url}" then commitOverrides."${url}" else (fetchgit' { inherit url rev ref fetchSubmodules; }).rev;
+  fetchgit' = { url, rev ? null, ref ? null, fetchSubmodules ? false }: fixGitAttributes (builtins.fetchGit ({ inherit url; submodules = fetchSubmodules; allRefs = rev != null; shallow = false; exportIgnore = false; } // (maybeAttr "ref" ref) // (maybeAttr "rev" rev)));
+  getRev = { url, rev ? null, ref ? null, fetchSubmodules ? false }: (fetchgit' { inherit url rev ref fetchSubmodules; }).rev;
   getHash = { url, rev ? null, ref ? null, fetchSubmodules ? false }: (fetchgit' { inherit url fetchSubmodules; rev = getRev { inherit url rev ref fetchSubmodules; }; }).narHash;
   startsWith = prefix: s: (builtins.stringLength s) >= (builtins.stringLength prefix) && (builtins.substring 0 (builtins.stringLength prefix) s) == prefix;
   endsWith = suffix: s: (builtins.stringLength s) >= (builtins.stringLength suffix) && (builtins.substring ((builtins.stringLength s) - (builtins.stringLength suffix)) (builtins.stringLength suffix) s) == suffix;
   removePrefix = prefix: s: if startsWith prefix s then builtins.substring (builtins.stringLength prefix) ((builtins.stringLength s) - (builtins.stringLength prefix)) s else s;
   removeSuffix = suffix: s: if endsWith suffix s then builtins.substring 0 ((builtins.stringLength s) - (builtins.stringLength suffix)) s else s;
   stringContains = pattern: s: (builtins.length (lib.splitString pattern s)) > 1;
-  fetchgitImpure = { url, rev ? null, ref ? null, fetchSubmodules ? false }: fetchgit {
+  fetchgitImpure = { url, rev ? null, ref ? null, fetchSubmodules ? false }: fetchgit ({
     inherit url fetchSubmodules;
     rev = getRev { inherit url rev fetchSubmodules; };
     sha256 = getHash { inherit url rev fetchSubmodules; };
-  };
+  } // (if startsWith "https://github.com/" url then { name = "source"; } else {}));
   fetchgitFormat = { url, rev ? null, ref ? null, fetchSubmodules ? false }: if startsWith "https://github.com/" url
     then let
       sp = lib.splitString "/" url;
@@ -66,7 +69,9 @@ let
         sha256 = "${builtins.hashFile "sha256" (builtins.fetchurl url)}";
       };
   '';
-  handleURL = git: wget: fail: url: (url: if startsWith "git+" url
+  handleURL = overridden: git: wget: fail: url: (url: if repoOverrides?"${url}"
+    then overridden url
+    else if startsWith "git+" url
     then let
       real_url = removeSuffix ".git" (removePrefix "git+" (builtins.elemAt (lib.splitString "#" url) 0));
       rev = if stringContains "#commit=" url
@@ -83,11 +88,11 @@ let
     then wget { inherit url; }
     else fail url) (builtins.trace "fetching ${url}..." url);
   urlNotSupported = url: throw "URL not supported: ${url}";
-  urlFormat = url: "  \"${url}\" = " + (handleURL fetchgitFormat wgetFormat urlNotSupported url);
-  urlFetch = handleURL fetchgitImpure builtins.fetchurl urlNotSupported;
-  urlIsSupported = handleURL (x: true) (x: true) (x: false);
+  urlFormat = url: "  \"${url}\" = " + (handleURL urlNotSupported fetchgitFormat wgetFormat urlNotSupported url);
+  urlFetch = handleURL (x: repoOverrides."${x}") fetchgitImpure builtins.fetchurl urlNotSupported;
+  urlIsSupported = handleURL (x: false) (x: true) (x: true) (x: false);
   uniq = list: builtins.attrNames (builtins.foldl' (s: q: s // { "${q}" = true; }) {} list);
-  getNonPinnedSources = name: path: map ({fst, snd}: fst) (lib.filter ({fst, snd}: snd == "SKIP" && !(!(stringContains "/" fst) && builtins.pathExists "${path}/${fst}") && (urlIsSupported fst)) ((lib.zipLists (getSources path) (getShaSums path)) ++ (map (x: { fst = x; snd = "SKIP"; }) ((overrides.extraSources."${name}" or []) ++ (overrides.softfpOverrides.extraSources."${name}" or []) ++ (overrides.sources."${name}" or []) ++ (overrides.softfpOverrides.sources."${name}" or [])))));
+  getNonPinnedSources = name: path: map ({fst, snd}: fst) (lib.filter ({fst, snd}: snd == "SKIP" && !(!(stringContains "/" fst) && builtins.pathExists "${path}/${fst}")) ((lib.zipLists (getSources path) (getShaSums path)) ++ (map (x: { fst = x; snd = "SKIP"; }) ((overrides.extraSources."${name}" or []) ++ (overrides.softfpOverrides.extraSources."${name}" or []) ++ (overrides.sources."${name}" or []) ++ (overrides.softfpOverrides.sources."${name}" or [])))));
   getNonPinnedSourcesForRepo = repo: builtins.concatLists (map (x: getNonPinnedSources "${x}" "${repo}/${x}") (getAllPackages repo));
   formatLockfile = urls: manual: ''
     { pkgs ? import<nixpkgs>{} }:
@@ -98,7 +103,7 @@ let
     ${builtins.concatStringsSep "" (map urlFormat urls)}${manual}}
     '';
   repoUrl = "git+https://github.com/vitasdk/packages.git";
-  commitOverrides = {
+  repoOverrides = {
   };
   manualLock = "  "+''
     "svn://svn.code.sf.net/p/lame/svn/trunk/lame#revision=r6403" = fetchsvn {
@@ -111,5 +116,5 @@ in
 
 writeTextFile {
   name = "vita-package-lock.nix";
-  text = formatLockfile (uniq ((map (f: f.object) core-inputs.subprojects) ++ core-inputs.tarballs ++ [ core-inputs.src repoUrl ] ++ getNonPinnedSourcesForRepo (if packages != null then "${packages}" else urlFetch repoUrl))) manualLock;
+  text = formatLockfile (builtins.filter urlIsSupported (uniq ((map (f: f.object) core-inputs.subprojects) ++ core-inputs.tarballs ++ [ core-inputs.src repoUrl ] ++ getNonPinnedSourcesForRepo (if packages != null then "${packages}" else urlFetch repoUrl)))) manualLock;
 }

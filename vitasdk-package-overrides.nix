@@ -7,7 +7,7 @@ rec {
     patchShebangs --build vita-openssl
     sed -i 's:/bin/bash:${bash}/bin/bash:' VITABUILD
   '';
-  deps.openssl = [ perl xorg.makedepend ];
+  deps.openssl = [ perl xorg.makedepend (writeShellScriptBin "nproc" "echo 1") ];
 
   patches."openssl-1.1.1" = ''
     patchShebangs --build vita-openssl3
@@ -54,13 +54,11 @@ rec {
     sed -i "s:HOST_CC='gcc -m32':HOST_CC='${pkgsi686Linux.gcc}/bin/gcc':" VITABUILD
   '';
 
-  propagatedBuildInputs.freetype = f: with f; [ zlib libpng ];
+  propagatedBuildInputs.freetype = f: with f; [ zlib libpng bzip2 ];
 
   vitaDeps.cpr = f: with f; [ openssl ];
 
-  # XXX: this applies to both cpython and cpython3 packages due to bad package names
   deps.cpython = [
-    python311
     (stdenv.mkDerivation {
       name = "python2-pypy-symlink";
       phases = [ "installPhase" ];
@@ -78,6 +76,8 @@ rec {
     sed -i 's/if not can_merge():$/if os.name == '"'"'vita'"'"' or not can_merge():/' youtube-dl/youtube_dl/YoutubeDL.py
     sed -i '/^\(import ctypes\|    compat_ctypes_WINFUNCTYPE,\)/d' youtube-dl/youtube_dl/utils.py
   '';
+
+  deps.cpython3 = [ python311 ];
 
   patches.libvpx = ''
     export -f isScript patchShebangs
@@ -121,7 +121,7 @@ rec {
 
   propagatedBuildInputs.uvdb = f: with f; [ kubridge ];
 
-  sources = {};
+  sources.libxml2 = [ "https://download.gnome.org/sources/libxml2/2.15/libxml2-2.15.1.tar.xz" ];
 
   softfpOverrides = {
     patches.vitaGL = ''
