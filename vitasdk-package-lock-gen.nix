@@ -74,16 +74,20 @@ let
     else if startsWith "git+" url
     then let
       real_url = removeSuffix ".git" (removePrefix "git+" (builtins.elemAt (lib.splitString "#" url) 0));
-      rev = if stringContains "#commit=" url
+      rev = if commitOverrides?"${url}"
+        then commitOverrides."${url}"
+        else if stringContains "#commit=" url
         then builtins.elemAt (lib.splitString "#commit=" url) 1
         else null;
-      ref = if stringContains "#tag=" url
+      ref = if commitOverrides?"${url}"
+        then commitOverrides."${url}"
+        else if stringContains "#tag=" url
         then "refs/tags/${builtins.elemAt (lib.splitString "#tag=" url) 1}"
         else if stringContains "#branch" url
         then "${builtins.elemAt (lib.splitString "#branch=" url) 1}"
         else null;
       fetchSubmodules = stringContains "#recursive" url;
-    in git { url = real_url; inherit rev ref fetchSubmodules; }
+    in git { url = real_url; inherit ref rev fetchSubmodules; }
     else if (startsWith "http://" url) || (startsWith "https://" url)
     then wget { inherit url; }
     else fail url) (builtins.trace "fetching ${url}..." url);
@@ -103,6 +107,8 @@ let
     ${builtins.concatStringsSep "" (map urlFormat urls)}${manual}}
     '';
   repoUrl = "git+https://github.com/vitasdk/packages.git";
+  commitOverrides = {
+  };
   repoOverrides = {
   };
   manualLock = "  "+''
